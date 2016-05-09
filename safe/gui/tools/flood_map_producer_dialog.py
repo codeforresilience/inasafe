@@ -56,7 +56,7 @@ from safe.gui.tools.help.osm_downloader_help import osm_downloader_help
 
 LOGGER = logging.getLogger('InaSAFE')
 
-FORM_CLASS = get_ui_class('flood_map_producer.ui')
+FORM_CLASS = get_ui_class('flood_map_producer_dialog_base.ui')
 
 
 class floodmapDialog(QDialog, FORM_CLASS):
