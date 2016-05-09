@@ -318,6 +318,20 @@ class Plugin(object):
         self.action_import_dialog.triggered.connect(self.show_osm_downloader)
         self.add_action(self.action_import_dialog)
 
+    def _create_flood_map_producer_action(self):
+        """Create action for import Flood Map Dialog."""
+        icon = resources_path('img', 'icons', 'show-flood-map-producer.svg')
+        self.action_import_dialog = QAction(
+            QIcon(icon),
+            self.tr('flood map producer'),
+            self.iface.mainWindow())
+        self.action_import_dialog.setStatusTip(self.tr(
+            'Flood Map Producer'))
+        self.action_import_dialog.setWhatsThis(self.tr(
+            'Flood Map Producer'))
+        self.action_import_dialog.triggered.connect(self.show_flood_map_producer)
+        self.add_action(self.action_import_dialog)
+
     def _create_add_osm_layer_action(self):
         """Create action for import OSM Dialog."""
         icon = resources_path('img', 'icons', 'add-osm-tiles-layer.svg')
@@ -444,6 +458,7 @@ class Plugin(object):
         self._create_analysis_wizard_action()
         self._add_spacer_to_menu()
         self._create_osm_downloader_action()
+        self._create_flood_map_producer_action()
         self._create_add_osm_layer_action()
         self._create_shakemap_converter_action()
         self._create_minimum_needs_action()
@@ -667,11 +682,26 @@ class Plugin(object):
         dialog = OsmDownloaderDialog(self.iface.mainWindow(), self.iface)
         dialog.show()  # non modal
 
+    def show_flood_map_producer(self):
+        """Show the OSM buildings downloader dialog."""
+        from safe.gui.tools.flood_map_producer_dialog import floodmapDialog
+
+        dialog = floodmapDialog(self.iface.mainWindow(), self.iface)
+        dialog.show()  # non modal
+
+
     def show_osm_downloader(self):
         """Show the OSM buildings downloader dialog."""
         from safe.gui.tools.osm_downloader_dialog import OsmDownloaderDialog
 
         dialog = OsmDownloaderDialog(self.iface.mainWindow(), self.iface)
+        dialog.show()  # non modal
+
+    def show_flood_map_producer(self):
+        """Show the OSM buildings downloader dialog."""
+        from safe.gui.tools.flood_map_producer_dialog import floodmapDialog
+
+        dialog = floodmapDialog(self.iface.mainWindow(), self.iface)
         dialog.show()  # non modal
 
     def add_osm_layer(self):

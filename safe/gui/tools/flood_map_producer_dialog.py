@@ -56,10 +56,10 @@ from safe.gui.tools.help.osm_downloader_help import osm_downloader_help
 
 LOGGER = logging.getLogger('InaSAFE')
 
-FORM_CLASS = get_ui_class('osm_downloader_dialog_base.ui')
+FORM_CLASS = get_ui_class('flood_map_producer.ui')
 
 
-class OsmDownloaderDialog(QDialog, FORM_CLASS):
+class floodmapDialog(QDialog, FORM_CLASS):
     """Downloader for OSM data."""
 
     def __init__(self, parent=None, iface=None):
@@ -463,7 +463,7 @@ class OsmDownloaderDialog(QDialog, FORM_CLASS):
             file_path_test = file_path
 
         if os.path.isfile(file_path_test):
-            return OsmDownloaderDialog.get_unique_file_path_suffix(
+            return floodmapDialog.get_unique_file_path_suffix(
                 file_path, separator, i + 1)
         else:
             return i
@@ -549,4 +549,4 @@ class OsmDownloaderDialog(QDialog, FORM_CLASS):
         self.canvas.unsetMapTool(self.rectangle_map_tool)
         self.rectangle_map_tool.reset()
 
-        super(OsmDownloaderDialog, self).reject()
+        super(floodmapDialog, self).reject()
